@@ -36,22 +36,23 @@ def search_flights():
 
         flights_json = flightQuery(querystring).json()
 
-        # ✅ Check if the API returned valid data
         if "data" not in flights_json:
             print("DEBUG: API response missing 'data'", flights_json)
             return jsonify([])
 
-        flights = flights_json["data"].get("results", [])
+        flights = flights_json["data"].get("itineraries", [])
         results = []
         for f in flights:
             results.append({
-                "airline": f.get("legs", [{}])[0].get("carriers", [{}])[0].get("name", "Unknown"),
+                "airline": f.get("legs", [{}])[0].get("carriers", [{}]).get("marketing", [{}])[0].get("name", "Unknown"),
                 "origin": data["origin"],
                 "destination": data["destination"],
                 "departureTime": f.get("legs", [{}])[0].get("departure", ""),
                 "arrivalTime": f.get("legs", [{}])[0].get("arrival", ""),
                 "price": f.get("price", {}).get("formatted", "N/A")
             })
+
+        #print(results.json())
 
         return jsonify(results)
 
@@ -64,7 +65,7 @@ def queryInfo(location: str):
     url = "https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport"
     querystring = {"query": location, "locale": "en-US"}
     headers = {
-        "x-rapidapi-key": API_KEY,
+        "x-rapidapi-key": os.getenv("API_KEY"),
         "x-rapidapi-host": "sky-scrapper.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring).json()
@@ -84,7 +85,7 @@ def queryInfo(location: str):
 def flightQuery(querystring: dict):
     url = "https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchFlights"
     headers = {
-        "x-rapidapi-key": API_KEY,
+        "x-rapidapi-key": os.getenv("API_KEY"),
         "x-rapidapi-host": "sky-scrapper.p.rapidapi.com"
     }
     return requests.get(url, headers=headers, params=querystring)
