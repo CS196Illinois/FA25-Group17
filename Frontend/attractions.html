@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buking.com | Attractions Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Buking<span>.com</span></h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="flights.html">Flights</a>
+      <a href="planner.html">Planner</a>
+      <a href="itinerary.html">Itinerary</a>
+      <a href="attractions.html">Attractions</a>
+    </nav>
+  </header>
+
+  <section class="chat-section">
+    <div class="chat-container">
+      <div class="chat-sidebar">
+        <h3>Travel Assistant</h3>
+        <p>Ask me about attractions in your destination!</p>
+        
+      </div>
+
+      <div class="chat-main">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+          </div>
+        </div>
+
+        <div class="chat-input-container">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Ask about attractions, museums, night markets..."
+            onkeypress="handleKeyPress(event)"
+          >
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="attractions-container" id="attractionsContainer">
+      <!-- Attraction cards will be dynamically added here -->
+    </div>
+  </section>
+
+  <script src="attractions.js"></script>
+</body>
+</html>
