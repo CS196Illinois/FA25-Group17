@@ -18,11 +18,11 @@
   <section class="flights">
     <div class="flight-search">
       <h2>Find Flights</h2>
-      <form id="flightForm">
+      <form id="flightForm" onsubmit="handleFormSubmit(event)">
         <input type="text" id="origin" placeholder="Origin city" required>
         <input type="text" id="destination" placeholder="Destination city" required>
         <input type="date" id="date" required>
-        <input type="date" id="returnDate">
+        <input type="date" id="returnDate" placeholder="Return date (optional)">
         <input type="number" id="adults" min="1" value="1" required>
         <button type="submit">Search</button>
       </form>
@@ -30,24 +30,6 @@
 
     <div id="loading" style="display:none;">Loading flights...</div>
     <div id="results"></div>
-
-    <h2>Available Flights</h2>
-
-    <div class="flight-card">
-      <h3>Qatar</h3>
-      <p>London → New York</p>
-      <p>3:30 pm - 10:05 am</p>
-      <p><b>$889</b></p>
-      <button>Book Now</button>
-    </div>
-
-    <div class="flight-card">
-      <h3>Emirates</h3>
-      <p>London → New York</p>
-      <p>4:30 am - 11:00 am</p>
-      <p><b>$1069</b></p>
-      <button>Book Now</button>
-    </div>
   </section>
   <script src="flights.js"></script>
 

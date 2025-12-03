@@ -368,4 +368,161 @@ button:hover {
   margin-bottom: 40px;
 }
 
-/* Keep rest of your saved-card CSS as-is */
+/* ===========================
+   New Itinerary Styles
+=========================== */
+#itineraryContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.loading-state, .empty-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-state h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.empty-state p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #005ec0;
+}
+
+.itinerary-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.itinerary-header h2 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+
+.itinerary-header p {
+  color: #666;
+  font-size: 1.1em;
+}
+
+.itinerary-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 25px;
+}
+
+.itinerary-item-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.itinerary-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.itinerary-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #007bff, #00b4d8);
+  color: white;
+}
+
+.itinerary-item-header h3 {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.remove-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.remove-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.itinerary-item-body {
+  padding: 20px;
+}
+
+.itinerary-item-body .description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.itinerary-item-body .details {
+  margin-bottom: 15px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  color: #333;
+}
+
+.detail-row .icon {
+  font-size: 1.2em;
+}
+
+.detail-row.free {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.itinerary-item-body .website {
+  margin-top: 15px;
+}
+
+.itinerary-item-body .website a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.itinerary-item-body .website a:hover {
+  color: #005ec0;
+  text-decoration: underline;
+}

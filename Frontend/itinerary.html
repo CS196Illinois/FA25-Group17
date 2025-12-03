@@ -16,59 +16,14 @@
   </header>
 
   <section class="itinerary">
-    <h2>Sample Itinerary</h2>
-
-    <div class="day-tabs">
-      <button class="active" onclick="showDay(1)">Day 1</button>
-      <button onclick="showDay(2)">Day 2</button>
-      <button onclick="showDay(3)">Day 3</button>
-      <button onclick="showDay(4)">Day 4</button>
-    </div>
-
-    <div class="itinerary-container">
-      <div class="itinerary-list">
-        <div id="day1" class="day-content">
-          <h3>Morning</h3>
-          <div class="itinerary-item"> Breakfast at Infiniti Tea — $$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-          <div class="itinerary-item"> Visit Suprolock Museusm — $$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-
-          <h3>Afternoon</h3>
-          <div class="itinerary-item"> Lunch at Oozu Ramen Bar — $$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-          <div class="itinerary-item"> Shopping at Target — $$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-
-          <h3>Evening</h3>
-          <div class="itinerary-item"> CU Adventures — $$$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-        </div>
-
-        <div id="day2" class="day-content hidden">
-          <h3>Morning</h3>
-          <div class="itinerary-item"> Breakfast at Infiniti Tea  — $$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-          <h3>Afternoon</h3>
-          <div class="itinerary-item"> Visit Quad — $$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-          <h3>Evening</h3>
-          <div class="itinerary-item"> Movie — $$$ Estimated cost <button onclick="addActivity(this)">Add</button></div>
-        </div>
-
-        <div id="addedActivities" class="added-section">
-          <h3>My Added Activities:</h3>
-          <ul id="activityList"></ul>
-        </div>
-      </div>
-
-      <div class="map">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Google_Maps_screenshot_example.png" alt="Map">
+    <div id="itineraryContainer">
+      <!-- Itinerary items will be dynamically loaded here -->
+      <div class="loading-state">
+        <p>Loading your itinerary...</p>
       </div>
     </div>
   </section>
 
-  <script>
-    function showDay(day) {
-      document.querySelectorAll(".day-content").forEach(div => div.classList.add("hidden"));
-      document.querySelector("#day" + day).classList.remove("hidden");
-      document.querySelectorAll(".day-tabs button").forEach(btn => btn.classList.remove("active"));
-      document.querySelectorAll(".day-tabs button")[day - 1].classList.add("active");
-    }
-    
-  </script>
+  <script src="itinerary.js"></script>
 </body>
 </html>

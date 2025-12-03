@@ -113,7 +113,7 @@ def chat_with_bot(message):
     format_template = {
         'name': '',
         'description': '',
-        'addres': '',
+        'address': '',
         'opening-hours': '',
         'ticket_price': '',
         'website_url': '',
@@ -148,6 +148,31 @@ def chat_with_bot(message):
         print("Response was:", bot_response)
         return []
 
+@app.route('/itinerary', methods=['GET'])
+def get_itinerary():
+    try:
+        user_id = request.args.get("user_id", "default_user")
+
+        if user_id not in itineraries:
+            return jsonify({
+                "success": True,
+                "itinerary": [],
+                "count": 0
+            })
+
+        return jsonify({
+            "success": True,
+            "itinerary": itineraries[user_id],
+            "count": len(itineraries[user_id])
+        })
+
+    except Exception as e:
+        print("ERROR in /itinerary GET:", e)
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
 @app.route('/itinerary', methods=['POST'])
 def add_to_itinerary():
     try:
@@ -181,6 +206,48 @@ def add_to_itinerary():
 
     except Exception as e:
         print("ERROR in /itinerary POST:", e)
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@app.route('/itinerary', methods=['DELETE'])
+def remove_from_itinerary():
+    try:
+        data = request.json
+        user_id = data.get("user_id", "default_user")
+        attraction_name = data.get("attraction_name")
+
+        if not attraction_name:
+            return jsonify({
+                "success": False,
+                "error": "No attraction name provided"
+            }), 400
+
+        if user_id not in itineraries:
+            return jsonify({
+                "success": False,
+                "error": "No itinerary found"
+            }), 404
+
+        # Find and remove the attraction
+        original_length = len(itineraries[user_id])
+        itineraries[user_id] = [item for item in itineraries[user_id] if item['name'] != attraction_name]
+
+        if len(itineraries[user_id]) == original_length:
+            return jsonify({
+                "success": False,
+                "error": "Attraction not found in itinerary"
+            }), 404
+
+        return jsonify({
+            "success": True,
+            "message": "Removed from itinerary",
+            "count": len(itineraries[user_id])
+        })
+
+    except Exception as e:
+        print("ERROR in /itinerary DELETE:", e)
         return jsonify({
             "success": False,
             "error": str(e)
